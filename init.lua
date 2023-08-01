@@ -1,40 +1,5 @@
---[[
+-- https://learnxinyminutes.com/docs/lua/
 
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-
-Kickstart.nvim is *not* a distribution.
-
-Kickstart.nvim is a template for your own configuration.
-  The goal is that you can read every line of code, top-to-bottom, understand
-  what your configuration is doing, and modify it to suit your needs.
-
-  Once you've done that, you should start exploring, configuring and tinkering to
-  explore Neovim!
-
-  If you don't know anything about Lua, I recommend taking some time to read through
-  a guide. One possible example:
-  - https://learnxinyminutes.com/docs/lua/
-
-  And then you can explore or search through `:help lua-guide`
-
-
-Kickstart Guide:
-
-I have left several `:help X` comments throughout the init.lua
-You should run that command and read that help section for more information.
-
-In addition, I have some `NOTE:` items throughout the file.
-These are for you, the reader to help understand what is happening. Feel free to delete
-them once you know what you're doing, but they should serve as a guide for when you
-are first encountering a few different constructs in your nvim config.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now :)
---]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -84,7 +49,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -108,7 +73,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',          opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -122,7 +87,8 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
+          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
@@ -130,11 +96,51 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    'svrana/neosolarized.nvim',
     priority = 1000,
+    dependencies = {
+      "tjdevries/colorbuddy.nvim"
+    },
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      local status, n = pcall(require, "neosolarized")
+      if (not status) then return end
+
+      n.setup({
+        comment_italics = true,
+        -- background_set = true
+      })
+
+      local cb = require('colorbuddy.init')
+      local Color = cb.Color
+      local colors = cb.colors
+      local Group = cb.Group
+      local groups = cb.groups
+      local styles = cb.styles
+
+      Color.new('white', '#ffffff')
+      Color.new('black', '#000000')
+      Group.new('CursorLine', colors.none, colors.base03, styles.NONE, colors.base1)
+      Group.new('CursorLineNr', colors.yellow, colors.black, styles.NONE, colors.base1)
+      Group.new('Visual', colors.none, colors.base03, styles.reverse)
+
+      local cError = groups.Error.fg
+      local cInfo = groups.Information.fg
+      local cWarn = groups.Warning.fg
+      local cHint = groups.Hint.fg
+
+      Group.new("DiagnosticVirtualTextError", cError, cError:dark():dark():dark():dark(), styles.NONE)
+      Group.new("DiagnosticVirtualTextInfo", cInfo, cInfo:dark():dark():dark(), styles.NONE)
+      Group.new("DiagnosticVirtualTextWarn", cWarn, cWarn:dark():dark():dark(), styles.NONE)
+      Group.new("DiagnosticVirtualTextHint", cHint, cHint:dark():dark():dark(), styles.NONE)
+      Group.new("DiagnosticUnderlineError", colors.none, colors.none, styles.undercurl, cError)
+      Group.new("DiagnosticUnderlineWarn", colors.none, colors.none, styles.undercurl, cWarn)
+      Group.new("DiagnosticUnderlineInfo", colors.none, colors.none, styles.undercurl, cInfo)
+      Group.new("DiagnosticUnderlineHint", colors.none, colors.none, styles.undercurl, cHint)
+      Group.new("Macro", groups.PreProc, colors.none, styles.italic + styles.bold)
+      Group.link("Function", groups.Function, colors.none, styles.italic)
+      Group.new("Conditional", groups.Statement, colors.none, styles.italic)
+      Group.new("Boolean", groups.Constant, colors.none, styles.bold)
+      Group.new("HoverBorder", colors.yellow, colors.none, styles.NONE)
     end,
   },
 
@@ -164,7 +170,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',         opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -515,6 +521,10 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+  vim.api.nvim_set_hl(0, group, {})
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
