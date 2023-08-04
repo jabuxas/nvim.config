@@ -30,27 +30,6 @@ return {
     local cWarn = groups.Warning.fg
     local cHint = groups.Hint.fg
 
-    Group.link("@lsp.type.type", groups.Type)
-    Group.link("@lsp.type.class", groups.Type)
-    Group.link("@lsp.type.enum", groups.Type)
-    Group.link("@lsp.type.interface", groups.Type)
-    Group.link("@lsp.type.struct", groups.Type)
-    Group.link("@lsp.type.typeParameter", groups.Type)
-    Group.link("@lsp.type.parameter", groups.Special)
-    Group.link("@lsp.type.variable", groups.TSVariable)
-    Group.link("@lsp.type.property", groups.TSProperty)
-    Group.link("@lsp.type.enumMember", groups.TSProperty)
-    Group.link("@lsp.type.events", groups.Label)
-    Group.link("@lsp.type.function", groups.Function)
-    Group.link("@lsp.type.method", groups.TSMethod)
-    Group.link("@lsp.type.keyword", groups.Keyword)
-    Group.link("@lsp.type.modifier", groups.Operator)
-    Group.link("@lsp.type.comment", groups.Comment)
-    Group.link("@lsp.type.string", groups.String)
-    Group.link("@lsp.type.number", groups.Number)
-    Group.link("@lsp.type.regexp", groups.TSStringRegex)
-    Group.link("@lsp.type.operator", groups.Operator)
-
     Group.new("DiagnosticVirtualTextError", cError, cError:dark():dark():dark():dark(), styles.NONE)
     Group.new("DiagnosticVirtualTextInfo", cInfo, cInfo:dark():dark():dark(), styles.NONE)
     Group.new("DiagnosticVirtualTextWarn", cWarn, cWarn:dark():dark():dark(), styles.NONE)
