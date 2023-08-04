@@ -160,10 +160,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
--- [[ Basic Keymaps ]]
-
 -- Keymaps for better default experience
--- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
@@ -171,7 +168,6 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -182,7 +178,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
     mappings = {
@@ -369,6 +364,11 @@ mason_lspconfig.setup_handlers {
 }
 -- this is for my personal config, i cant bother seeing every TJ's default and changing it to my own
 require("jabuxas")
+
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
