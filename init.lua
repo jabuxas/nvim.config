@@ -327,6 +327,7 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
+  hls = {},
   html = { provideFormatter = false },
 
   lua_ls = {

@@ -6,7 +6,8 @@ return {
         require("null-ls").builtins.formatting.black.with({
           extra_args = { "--line-length=80" }
         }),
-        require("null-ls").builtins.formatting.prettierd
+        require("null-ls").builtins.formatting.prettierd,
+        require("null-ls").builtins.formatting.fourmolu
       }
     }
   end

@@ -1,7 +1,6 @@
 local keymap = vim.keymap
 
 keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Start netrw" })
-keymap.set("n", "sf", vim.cmd.Ex, { desc = "Start netrw" })
 
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
