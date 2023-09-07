@@ -34,9 +34,12 @@ require('lazy').setup({
         'j-hui/fidget.nvim',
         tag = 'legacy',
         opts = {
+          align = {
+            bottom = false,
+          },
           window = {
             blend = 0,
-            border = "rounded",
+            -- border = "rounded",
           },
         },
       },
@@ -325,7 +328,8 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
-  -- rust_analyzer = {},
+  rust_analyzer = {},
+  gopls = {},
   -- tsserver = {},
   -- hls = {},
   html = { provideFormatter = false },
