@@ -190,6 +190,11 @@ require('telescope').setup {
       },
     },
   },
+  pickers = {
+    find_files = {
+      theme = "ivy",
+    }
+  },
 }
 
 -- Enable telescope fzf native, if installed
@@ -322,6 +327,18 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+      border = "single"
+    }
+  )
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signatureHelp, {
+      border = "single"
+    }
+  )
+  vim.diagnostic.config({ float = { border = "single" } })
 end
 
 local servers = {

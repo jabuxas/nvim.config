@@ -49,6 +49,7 @@ return {
   },
   config = function()
     local cmp = require 'cmp'
+    local winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel"
     local luasnip = require 'luasnip'
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup {}
@@ -137,8 +138,8 @@ return {
         end,
       },
       window = {
-        completion = cmp.config.window.bordered({}),
-        documentation = cmp.config.window.bordered({}),
+        completion = cmp.config.window.bordered({ winhighlight }),
+        documentation = cmp.config.window.bordered({ winhighlight }),
       },
     }
 
