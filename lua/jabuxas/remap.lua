@@ -28,6 +28,7 @@ keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 keymap.set("n", "<leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "replace current word" })
 keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "chmod +x current file" })
+keymap.set("n", "<leader>q", "<cmd>!go run %<CR>", { desc = "go run current file" })
 
 keymap.set("t", "<leader><Esc>", [[<C-\><C-n>]], { desc = "exit insert mode on builtin terminal" })
 
@@ -46,3 +47,6 @@ keymap.set("n", "<left>", "<C-w><")
 keymap.set("n", "<right>", "<C-w>>")
 keymap.set("n", "<up>", "<C-w>+")
 keymap.set("n", "<down>", "<C-w>-")
+
+keymap.set("n", "<leader>gsj", "<cmd>GoTagAdd json <CR>", { desc = "Add json struct tags" })
+keymap.set("n", "<leader>gsy", "<cmd>GoTagAdd yaml <CR>", { desc = "Add yaml struct tags" })

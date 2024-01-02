@@ -5,9 +5,9 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 vim.opt.clipboard:append({ "unnamedplus" })
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
@@ -28,7 +28,10 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
--- vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "80"
+vim.cmd[[highlight ColorColumn ctermbg=235 guibg=#262626]]
+vim.api.nvim_create_autocmd({"WinLeave"}, {pattern = "*", callback = function() vim.opt.colorcolumn = "0" end,})
+vim.api.nvim_create_autocmd({"WinEnter"}, {pattern = "*", callback = function() vim.opt.colorcolumn = "80" end,})
 
 vim.g.mapleader = " "
 

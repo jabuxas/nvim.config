@@ -60,6 +60,10 @@ return {
           luasnip.lsp_expand(args.body)
         end,
       },
+      preselect = cmp.PreselectMode.None,
+      completion = {
+        completeopt = "noselect,menuone,menu"
+      },
       sorting = {
         -- TODO: Would be cool to add stuff like "See variable names before method names" in rust, or something like that.
         comparators = {
