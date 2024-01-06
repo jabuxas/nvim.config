@@ -39,7 +39,7 @@ return {
   --   Group.new("DiagnosticUnderlineInfo", colors.none, colors.none, styles.undercurl, cInfo)
   --   Group.new("DiagnosticUnderlineHint", colors.none, colors.none, styles.undercurl, cHint)
   --   Group.new("Macro", groups.PreProc, colors.none, styles.italic + styles.bold)
-  --   Group.link("Function", groups.Function, colors.none, styles.italic)
+  --   Group.new("Function", groups.Function, colors.none, styles.italic)
   --   Group.new("Conditional", groups.Statement, colors.none, styles.italic)
   --   Group.new("Boolean", groups.Constant, colors.none, styles.bold)
   --   Group.new("HoverBorder", colors.yellow, colors.none, styles.NONE)

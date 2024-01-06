@@ -142,8 +142,8 @@ return {
         end,
       },
       window = {
-        completion = cmp.config.window.bordered({ winhighlight }),
-        documentation = cmp.config.window.bordered({ winhighlight }),
+        completion = cmp.config.window.bordered(winhighlight),
+        documentation = cmp.config.window.bordered(winhighlight),
       },
     }
 

@@ -1,12 +1,13 @@
 return {
-  "bluz71/vim-nightfly-colors",
-  name = "nightfly",
+  "bluz71/vim-moonfly-colors",
+  name = "moonfly",
   lazy = false,
   priority = 1000,
   config = function()
     vim.o.termguicolors = true
-    vim.cmd [[colorscheme nightfly]]
-    vim.g.nightflyCursorColor = true
-    vim.g.nightflyNormalFloat = true
+    vim.cmd [[colorscheme moonfly]]
+    vim.g.moonflyCursorColor = true
+    vim.g.moonflyNormalFloat = true
+    vim.g.moonflyTransparent = true
   end
 }
