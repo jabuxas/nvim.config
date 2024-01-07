@@ -145,6 +145,10 @@ return {
         completion = cmp.config.window.bordered(winhighlight),
         documentation = cmp.config.window.bordered(winhighlight),
       },
+
+      experimental = {
+        ghost_text = true,
+      },
     }
 
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')

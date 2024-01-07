@@ -50,3 +50,6 @@ keymap.set("n", "<down>", "<C-w>-")
 
 keymap.set("n", "<leader>gsj", "<cmd>GoTagAdd json <CR>", { desc = "Add json struct tags" })
 keymap.set("n", "<leader>gsy", "<cmd>GoTagAdd yaml <CR>", { desc = "Add yaml struct tags" })
+keymap.set("n", "<A-.>", "<cmd>bnext<CR>", { desc = "Go to next Buffer" })
+keymap.set("n", "<A-,>", "<cmd>bprev<CR>", { desc = "Go to previous Buffer" })
+keymap.set("n", "<A-x>", "<cmd>bdelete<CR>", { desc = "Delete current buffer" })
