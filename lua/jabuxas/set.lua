@@ -30,8 +30,16 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 vim.cmd [[highlight ColorColumn ctermbg=235 guibg=#262626]]
-vim.api.nvim_create_autocmd({ "WinLeave" }, { pattern = "*", callback = function() vim.opt.colorcolumn = "0" end, })
-vim.api.nvim_create_autocmd({ "WinEnter" }, { pattern = "*", callback = function() vim.opt.colorcolumn = "80" end, })
+local autocmd = vim.api.nvim_create_autocmd
+autocmd({ "WinLeave" }, { pattern = "*", callback = function() vim.opt.colorcolumn = "0" end, })
+autocmd({ "WinEnter" }, { pattern = "*", callback = function() vim.opt.colorcolumn = "80" end, })
+autocmd({ "BufReadPre", "BufEnter", "BufRead", "BufNewFile" },
+    {
+        pattern = { "*.neorg", "*.md" },
+        callback = function()
+            require("cmp").setup.buffer({ enabled = false })
+        end
+    })
 
 vim.g.mapleader = " "
 
