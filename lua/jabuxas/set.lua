@@ -28,18 +28,28 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
+-- colorcolumn
 vim.opt.colorcolumn = "80"
 vim.cmd [[highlight ColorColumn ctermbg=235 guibg=#262626]]
 local autocmd = vim.api.nvim_create_autocmd
 autocmd({ "WinLeave" }, { pattern = "*", callback = function() vim.opt.colorcolumn = "0" end, })
 autocmd({ "WinEnter" }, { pattern = "*", callback = function() vim.opt.colorcolumn = "80" end, })
+
+-- disable bar any%
+vim.opt.laststatus = 0
+vim.o.noshowcmd = true
+vim.o.noruler = true
+vim.o.noshowmode = true
+
 autocmd({ "BufReadPre", "BufEnter", "BufRead", "BufNewFile" },
     {
-        pattern = { "*.neorg", "*.md" },
+        pattern = { "*.norg", "*.md" },
         callback = function()
             require("cmp").setup.buffer({ enabled = false })
         end
     })
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = "n"
 
 vim.g.mapleader = " "
 

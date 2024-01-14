@@ -1,6 +1,6 @@
 local keymap = vim.keymap
 
-keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Start netrw" })
+-- keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Start netrw" })
 
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -20,6 +20,10 @@ keymap.set("i", "<C-c>", "<Esc>")
 keymap.set("n", "Q", "<nop>")
 keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "format current buffer" })
+keymap.set("n",
+    "<leader>pv",
+    ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+    { noremap = true, desc = "open file browser" })
 
 keymap.set("n", "<A-k>", "<cmd>cnext<CR>zz")
 keymap.set("n", "<A-j>", "<cmd>cprev<CR>zz")
