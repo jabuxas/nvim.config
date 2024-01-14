@@ -195,11 +195,19 @@ require('telescope').setup {
     },
     pickers = {
         find_files = {
-            theme = "ivy",
+            theme = "cursor",
         }
+    },
+    extensions = {
+        file_browser = {
+            initial_mode = "normal",
+            theme = "dropdown",
+            hijack_netrw = true
+        },
     },
 }
 
+require("telescope").load_extension("file_browser")
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
