@@ -122,6 +122,7 @@ return {
       },
       sources = {
         { name = 'nvim_lsp' },
+        { name = "neorg" },
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
