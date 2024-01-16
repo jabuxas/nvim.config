@@ -30,7 +30,6 @@ vim.opt.updatetime = 50
 
 -- colorcolumn
 vim.opt.colorcolumn = "80"
-vim.cmd [[highlight ColorColumn ctermbg=235 guibg=#262626]]
 local autocmd = vim.api.nvim_create_autocmd
 autocmd({ "WinLeave" }, { pattern = "*", callback = function() vim.opt.colorcolumn = "0" end, })
 autocmd({ "WinEnter" }, { pattern = "*", callback = function() vim.opt.colorcolumn = "80" end, })
