@@ -107,6 +107,7 @@ else
 
 
       Group.new("@neorg.links.file", colors.magenta, colors.none, styles.bold)
+      Group.new("@comment", colors.gray, colors.none, styles.italic)
     end
   }
 end
