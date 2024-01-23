@@ -47,10 +47,10 @@ keymap.set("n", "+", "<C-a>", { desc = "increment number on cursor" })
 keymap.set("n", "-", "<C-x>", { desc = "decrease number on cursor" })
 
 -- move splits around
-keymap.set("n", "<left>", "<C-w><")
-keymap.set("n", "<right>", "<C-w>>")
-keymap.set("n", "<up>", "<C-w>+")
-keymap.set("n", "<down>", "<C-w>-")
+keymap.set("n", "<left>", "4<C-w><")
+keymap.set("n", "<right>", "4<C-w>>")
+keymap.set("n", "<up>", "4<C-w>+")
+keymap.set("n", "<down>", "4<C-w>-")
 
 keymap.set("n", "<leader>gsj", "<cmd>GoTagAdd json <CR>", { desc = "Add json struct tags" })
 keymap.set("n", "<leader>gsy", "<cmd>GoTagAdd yaml <CR>", { desc = "Add yaml struct tags" })
