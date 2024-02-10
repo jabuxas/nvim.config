@@ -1,3 +1,8 @@
+laptop = os.getenv("LAPTOP")
+if laptop == "yes" then
+  return {}
+end
+
 return {
   "3rd/image.nvim",
   config = function()
