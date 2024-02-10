@@ -1,5 +1,5 @@
 return {
-  "jose-elias-alvarez/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
   config = function()
     require("null-ls").setup {
       sources = {
@@ -10,6 +10,7 @@ return {
         require("null-ls").builtins.formatting.gofumpt,
         require("null-ls").builtins.formatting.goimports_reviser,
         require("null-ls").builtins.formatting.golines,
+        require("null-ls").builtins.diagnostics.golangci_lint,
       }
     }
   end

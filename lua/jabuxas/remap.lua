@@ -57,3 +57,6 @@ keymap.set("n", "<leader>gsy", "<cmd>GoTagAdd yaml <CR>", { desc = "Add yaml str
 keymap.set("n", "<A-.>", "<cmd>bnext<CR>", { desc = "Go to next Buffer" })
 keymap.set("n", "<A-,>", "<cmd>bprev<CR>", { desc = "Go to previous Buffer" })
 keymap.set("n", "<A-x>", "<cmd>bdelete<CR>", { desc = "Delete current buffer" })
+
+keymap.set("n", "<leader>gr", "<cmd>lua vim.lsp.buf.rename()<CR>",
+    { desc = "Renames all references to the symbol under the cursor" })
