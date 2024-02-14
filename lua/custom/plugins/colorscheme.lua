@@ -1,6 +1,5 @@
 local home = os.getenv("HOME")
 local colorscheme = {}
-
 local open = io.open
 
 local function read_file(path)
@@ -65,6 +64,19 @@ elseif fileContent == "red" then
       Group.new("@neorg.links.file", colors.magenta, colors.none, styles.bold)
       Group.new("@comment", colors.gray, colors.none, styles.italic)
     end
+  }
+elseif fileContent == "melange" then
+  colorscheme = {
+    "savq/melange-nvim",
+    lazy = false,
+    dependencies = { "tjdevries/colorbuddy.vim" },
+    priority = 1000,
+    config = function()
+      vim.opt.termguicolors = true
+      vim.o.background = 'light'
+      vim.cmd.colorscheme 'melange'
+    end,
+
   }
 else
   colorscheme = {
