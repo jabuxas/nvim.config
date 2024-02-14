@@ -1,8 +1,19 @@
-local solarized = true
-local laptop = os.getenv("LAPTOP")
+local home = os.getenv("HOME")
 local colorscheme = {}
 
-if laptop ~= "yes" and solarized then
+local open = io.open
+
+local function read_file(path)
+  local file = open(path, "rb")
+  if not file then return nil end
+  local content = file:read "*l"
+  file:close()
+  return content
+end
+
+local fileContent = read_file(string.format("%s/colorscheme", home));
+
+if fileContent == "white" then
   colorscheme = {
     'maxmx03/solarized.nvim',
     lazy = false,
@@ -20,7 +31,42 @@ if laptop ~= "yes" and solarized then
       vim.cmd [[highlight ColorColumn ctermbg=235 guibg=#435156]]
     end,
   }
-elseif laptop == "yes" then
+elseif fileContent == "red" then
+  colorscheme = {
+    "water-sucks/darkrose.nvim",
+    lazy = false,
+    dependencies = { "tjdevries/colorbuddy.vim" },
+    priority = 1000,
+    config = function()
+      vim.opt.termguicolors = true
+      vim.cmd.colorscheme("darkrose")
+      vim.cmd [[highlight ColorColumn ctermbg=235 guibg=#262626]]
+      local Color, colors, Group, groups, styles = require('colorbuddy').setup()
+
+      Color.new("red", "#9E4244")
+      Color.new("dark_red", "#6D0011")
+      Color.new("light_red", "#F85149")
+      Color.new("orange", "#A26B35")
+      Color.new("light_orange", "#F0883E")
+      Color.new("dark_purple", "#281C2B")
+      Color.new("magenta", "#8B2950")
+      Color.new("dark_pink", "#B76E79")
+      Color.new("pink", "#FF7979")
+      Color.new("light_pink", "#F6ACA7")
+      Color.new("gray", "#8B8B8B")
+      Color.new("bg", "#000000")
+      Color.new("bg_float", "#101010")
+      Color.new("bg_float_bright", "#121212")
+      Color.new("fg", "#C9C1C9")
+      Color.new("fg_gutter", "#8A95A2")
+      Color.new("fg_dark", "#4D5566")
+
+
+      Group.new("@neorg.links.file", colors.magenta, colors.none, styles.bold)
+      Group.new("@comment", colors.gray, colors.none, styles.italic)
+    end
+  }
+else
   colorscheme = {
     "bluz71/vim-moonfly-colors",
     name = "moonfly",
@@ -72,42 +118,6 @@ elseif laptop == "yes" then
       Group.link("@comment", groups.Comment)
       Group.link("@lsp.type.comment", groups.Comment)
       Group.link("Repeat", groups.Macro)
-    end
-
-  }
-else
-  colorscheme = {
-    "water-sucks/darkrose.nvim",
-    lazy = false,
-    dependencies = { "tjdevries/colorbuddy.vim" },
-    priority = 1000,
-    config = function()
-      vim.opt.termguicolors = true
-      vim.cmd.colorscheme("darkrose")
-      vim.cmd [[highlight ColorColumn ctermbg=235 guibg=#262626]]
-      local Color, colors, Group, groups, styles = require('colorbuddy').setup()
-
-      Color.new("red", "#9E4244")
-      Color.new("dark_red", "#6D0011")
-      Color.new("light_red", "#F85149")
-      Color.new("orange", "#A26B35")
-      Color.new("light_orange", "#F0883E")
-      Color.new("dark_purple", "#281C2B")
-      Color.new("magenta", "#8B2950")
-      Color.new("dark_pink", "#B76E79")
-      Color.new("pink", "#FF7979")
-      Color.new("light_pink", "#F6ACA7")
-      Color.new("gray", "#8B8B8B")
-      Color.new("bg", "#000000")
-      Color.new("bg_float", "#101010")
-      Color.new("bg_float_bright", "#121212")
-      Color.new("fg", "#C9C1C9")
-      Color.new("fg_gutter", "#8A95A2")
-      Color.new("fg_dark", "#4D5566")
-
-
-      Group.new("@neorg.links.file", colors.magenta, colors.none, styles.bold)
-      Group.new("@comment", colors.gray, colors.none, styles.italic)
     end
   }
 end
