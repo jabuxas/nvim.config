@@ -47,6 +47,14 @@ autocmd({ "BufReadPre", "BufEnter", "BufRead", "BufNewFile" },
             require("cmp").setup.buffer({ enabled = false })
         end
     })
+
+autocmd("Filetype", {
+    pattern = "norg",
+    callback = function()
+        vim.opt.wrap = true
+    end
+})
+
 vim.opt.conceallevel = 2
 vim.opt.concealcursor = "n"
 
