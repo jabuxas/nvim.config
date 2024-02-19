@@ -352,7 +352,17 @@ local servers = {
     tsserver = {},
     pyright = {},
 
-    jdtls = {},
+    jdtls = {
+        java = {
+            configuration = {
+                runtimes = {
+                    name = "JavaSE-17",
+                    path = "/opt/openjdk-bin-17",
+                    default = true,
+                }
+            }
+        }
+    },
 
 
     lua_ls = {
