@@ -352,6 +352,8 @@ local servers = {
     tsserver = {},
     pyright = {},
 
+    jdtls = {},
+
 
     lua_ls = {
         Lua = {
