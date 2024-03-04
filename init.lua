@@ -181,13 +181,13 @@ require('telescope').setup {
     },
     pickers = {
         find_files = {
-            theme = "cursor",
+            theme = "ivy",
         }
     },
     extensions = {
         file_browser = {
             initial_mode = "normal",
-            theme = "dropdown",
+            theme = "ivy",
             hijack_netrw = true
         },
     },
@@ -357,7 +357,7 @@ local servers = {
             configuration = {
                 runtimes = {
                     name = "JavaSE-17",
-                    path = "/opt/openjdk-bin-17",
+                    path = "/usr/lib/jvm/java-17-openjdk",
                     default = true,
                 }
             }
@@ -400,11 +400,7 @@ mason_lspconfig.setup_handlers {
 }
 -- this is for my personal config, i cant bother seeing every TJ's default and changing it to my own
 require("jabuxas")
-
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=4 sts=4 sw=4 et
