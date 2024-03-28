@@ -78,6 +78,20 @@ elseif fileContent == "melange" then
     end,
 
   }
+elseif fileContent == "monochrome" then
+  colorscheme = {
+    'jesseleite/nvim-noirbuddy',
+    dependencies = {
+      { 'tjdevries/colorbuddy.nvim' }
+    },
+    lazy = false,
+    priority = 1000,
+    opts = {
+      colors = {
+        primary = "#CCB901",
+      }
+    },
+  }
 elseif fileContent == "solarized" then
   colorscheme = {
     'maxmx03/solarized.nvim',
