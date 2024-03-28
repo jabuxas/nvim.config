@@ -107,6 +107,16 @@ require('lazy').setup({
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
         build = ':TSUpdate',
+        config = function(_, opts)
+            vim.filetype.add {
+                extension = { rasi = 'rasi' },
+                pattern = {
+                    ['.*/waybar/config'] = 'jsonc',
+                    ['.*/kitty/*.conf'] = 'bash',
+                    ['.*/hypr/.*%.conf'] = 'hyprlang',
+                },
+            }
+        end
     },
 
     require 'kickstart.plugins.autoformat',
