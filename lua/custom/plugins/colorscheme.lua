@@ -88,7 +88,8 @@ elseif fileContent == "monochrome" then
     priority = 1000,
     opts = {
       colors = {
-        primary = "#CCB901",
+        secondary = "#CCB901",
+        primary = "#ccc04c"
       }
     },
   }
