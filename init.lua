@@ -359,20 +359,8 @@ local servers = {
     },
     html = { provideFormatter = false },
     cssls = {},
-    tsserver = {
-        init_options = {
-            plugins = {
-                {
-                    name = "@vue/typescript-plugin",
-                    location = "~/.nvm/versions/node/v20.10.0/lib/node_modules/@vue/typescript-plugin",
-                    languages = { "vue" },
-                },
-            },
-        },
-        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    },
-    volar = {},
     pyright = {},
+    tsserver = {},
 
     jdtls = {
         java = {
@@ -420,9 +408,15 @@ mason_lspconfig.setup_handlers {
         }
     end
 }
+
+local lspconfig = require("lspconfig")
+
+lspconfig.volar.setup {
+    init_options = {
+        vue = {
+            hybridMode = false,
+        },
+    },
+}
 -- this is for my personal config, i cant bother seeing every TJ's default and changing it to my own
 require("jabuxas")
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
