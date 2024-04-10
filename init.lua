@@ -359,7 +359,19 @@ local servers = {
     },
     html = { provideFormatter = false },
     cssls = {},
-    tsserver = {},
+    tsserver = {
+        init_options = {
+            plugins = {
+                {
+                    name = "@vue/typescript-plugin",
+                    location = "~/.nvm/versions/node/v20.10.0/lib/node_modules/@vue/typescript-plugin",
+                    languages = { "vue" },
+                },
+            },
+        },
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    },
+    volar = {},
     pyright = {},
 
     jdtls = {
