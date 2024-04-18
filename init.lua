@@ -345,7 +345,6 @@ local on_attach = function(_, bufnr)
     )
     vim.diagnostic.config({ float = { border = "single" } })
 end
-
 local servers = {
     -- clangd = {},
     -- hls = {},
@@ -358,7 +357,7 @@ local servers = {
     html = { provideFormatter = false },
     cssls = {},
     pyright = {},
-    tsserver = {},
+    vtsls = {},
 
     jdtls = {
         java = {
@@ -409,10 +408,27 @@ mason_lspconfig.setup_handlers {
 
 local lspconfig = require("lspconfig")
 
+local mason_registry = require('mason-registry')
+local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+    '/node_modules/@vue/language-server'
+
+lspconfig.tsserver.setup {
+    init_options = {
+        plugins = {
+            {
+                name = '@vue/typescript-plugin',
+                location = vue_language_server_path,
+                languages = { 'vue' },
+            },
+        },
+    },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+}
+
 lspconfig.volar.setup {
     init_options = {
         vue = {
-            hybridMode = false,
+            hybridMode = true,
         },
     },
 }
