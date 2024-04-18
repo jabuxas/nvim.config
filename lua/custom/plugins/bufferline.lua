@@ -27,6 +27,7 @@ return {
     else
       options = {
         show_buffer_icons = false,
+        diagnostics = "nvim_lsp",
       }
     end
 

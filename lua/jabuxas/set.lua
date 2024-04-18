@@ -1,4 +1,3 @@
--- vim.opt.guicursor = ""
 vim.opt.mouse = "a"
 
 vim.opt.nu = true
@@ -52,6 +51,13 @@ autocmd("Filetype", {
     pattern = "norg",
     callback = function()
         vim.opt.wrap = true
+    end
+})
+
+autocmd("Filetype", {
+    pattern = "*",
+    callback = function()
+        vim.o.formatoptions = "jql"
     end
 })
 

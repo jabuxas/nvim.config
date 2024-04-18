@@ -178,7 +178,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
 })
 
-local fb_actions = require "telescope".extensions.file_browser.actions
 -- [[ Configure Telescope ]]
 require('telescope').setup {
     defaults = {
@@ -195,15 +194,14 @@ require('telescope').setup {
         }
     },
     extensions = {
-        file_browser = {
-            initial_mode = "normal",
-            theme = "ivy",
-            hijack_netrw = true
-        },
+        -- file_browser = {
+        --     initial_mode = "normal",
+        --     theme = "ivy",
+        --     hijack_netrw = true
+        -- },
     },
 }
 
-require("telescope").load_extension("file_browser")
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
@@ -235,7 +233,7 @@ require('nvim-treesitter.configs').setup {
     auto_install = false,
 
     highlight = { enable = true },
-    indent = { enable = true },
+    -- indent = { enable = true },
     incremental_selection = {
         enable = true,
         keymaps = {

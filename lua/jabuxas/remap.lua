@@ -22,7 +22,7 @@ keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "format current buffer" })
 keymap.set("n",
     "<leader>pv",
-    ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+    ":Ex<CR>",
     { noremap = true, desc = "open file browser" })
 
 keymap.set("n", "<A-k>", "<cmd>cnext<CR>zz")
