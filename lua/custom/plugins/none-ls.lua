@@ -12,6 +12,7 @@ return {
         require("null-ls").builtins.formatting.golines,
         require("null-ls").builtins.diagnostics.golangci_lint,
         require("null-ls").builtins.formatting.google_java_format,
+        require("null-ls").builtins.formatting.nixpkgs_fmt,
       }
     }
   end

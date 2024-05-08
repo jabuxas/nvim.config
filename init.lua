@@ -52,7 +52,7 @@ require('lazy').setup({
 
 
     -- Useful plugin to show you pending keybinds.
-    { 'folke/which-key.nvim',          opts = {} },
+    { 'folke/which-key.nvim',                    opts = {} },
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
@@ -87,10 +87,12 @@ require('lazy').setup({
     },
 
     -- "gc" to comment visual regions/lines
-    { 'numToStr/Comment.nvim',         opts = {} },
+    { 'numToStr/Comment.nvim',                   opts = {} },
+
+    { "nvim-treesitter/nvim-treesitter-context", opts = {} },
 
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'nvim-telescope/telescope.nvim',           branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
 
     {
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -349,15 +351,19 @@ local servers = {
     -- clangd = {},
     -- hls = {},
     gopls = {
-        usePlaceholders = true,
-        analyses = {
-            unusedparams = true,
-        }
+        gopls = {
+            usePlaceholders = true,
+            analyses = {
+                unusedparams = true,
+            }
+        },
     },
     html = { provideFormatter = false },
     cssls = {},
     pyright = {},
     vtsls = {},
+
+    nil_ls = {},
 
     jdtls = {
         java = {
