@@ -93,6 +93,25 @@ elseif fileContent == "monochrome" then
       }
     },
   }
+elseif fileContent == "forest" then
+  colorscheme = {
+    "neanias/everforest-nvim",
+    version = false,
+    lazy = false,
+    priority = 1000, -- make sure to load this before all the other start plugins
+    -- Optional; default configuration will be used if setup isn't called.
+    config = function()
+      vim.o.termguicolors = true
+      require("everforest").setup({
+        background = "hard",
+        italics = true,
+        ui_contrast = "high",
+        dim_inactive_windows = true,
+      })
+
+      vim.cmd.colorscheme("everforest")
+    end,
+  }
 elseif fileContent == "solarized" then
   colorscheme = {
     'maxmx03/solarized.nvim',
