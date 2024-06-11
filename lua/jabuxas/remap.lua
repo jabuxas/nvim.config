@@ -32,7 +32,8 @@ keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 keymap.set("n", "<leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "replace current word" })
 keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "chmod +x current file" })
-keymap.set("n", "<leader>q", "<cmd>!go run %<CR>", { desc = "go run current file" })
+keymap.set("n", "<leader>cm", "<cmd>make<CR>", { desc = "run make command" })
+keymap.set("n", "<leader>cc", "<cmd>!gcc -o %< % && %< <CR>", { desc = "compile current file and execute it" })
 
 keymap.set("t", "<leader><Esc>", [[<C-\><C-n>]], { desc = "exit insert mode on builtin terminal" })
 

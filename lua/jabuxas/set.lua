@@ -35,9 +35,6 @@ autocmd({ "WinEnter" }, { pattern = "*", callback = function() vim.opt.colorcolu
 
 -- disable bar any%
 vim.opt.laststatus = 0
-vim.o.noshowcmd = true
-vim.o.noruler = true
-vim.o.noshowmode = true
 
 autocmd({ "BufReadPre", "BufEnter", "BufRead", "BufNewFile" },
     {
