@@ -348,7 +348,7 @@ local on_attach = function(_, bufnr)
     vim.diagnostic.config({ float = { border = "single" } })
 end
 local servers = {
-    -- clangd = {},
+    clangd = {},
     -- hls = {},
     gopls = {
         gopls = {
