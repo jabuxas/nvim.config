@@ -358,6 +358,7 @@ local servers = {
             }
         },
     },
+    marksman = {},
     html = { provideFormatter = false },
     cssls = {},
     pyright = {},

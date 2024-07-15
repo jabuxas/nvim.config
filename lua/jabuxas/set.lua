@@ -36,14 +36,6 @@ autocmd({ "WinEnter" }, { pattern = "*", callback = function() vim.opt.colorcolu
 -- disable bar any%
 vim.opt.laststatus = 0
 
-autocmd({ "BufReadPre", "BufEnter", "BufRead", "BufNewFile" },
-    {
-        pattern = { "*.norg", "*.md" },
-        callback = function()
-            require("cmp").setup.buffer({ enabled = false })
-        end
-    })
-
 autocmd("Filetype", {
     pattern = "norg",
     callback = function()
@@ -57,9 +49,6 @@ autocmd("Filetype", {
         vim.o.formatoptions = "jql"
     end
 })
-
-vim.opt.conceallevel = 2
-vim.opt.concealcursor = "n"
 
 vim.g.mapleader = " "
 
