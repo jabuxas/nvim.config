@@ -118,15 +118,17 @@ elseif fileContent == "solarized" then
     lazy = false,
     priority = 1000,
     config = function()
-      vim.o.background = 'dark' -- or 'light'
+      vim.o.background = 'dark'
+      vim.o.termguicolors = true
 
       require('solarized').setup({
         enables = {
+          bufferline = true,
           cmp = true,
         },
         pallete = "solarized",
         theme = "neo",
-        transparent = true,
+        transparent = false,
       })
 
       vim.cmd.colorscheme 'solarized'
