@@ -124,11 +124,11 @@ elseif fileContent == "solarized" then
       require('solarized').setup({
         enables = {
           bufferline = true,
-          cmp = true,
+          cmp = true
         },
         pallete = "solarized",
         theme = "neo",
-        transparent = false,
+        transparent = true,
       })
 
       vim.cmd.colorscheme 'solarized'
