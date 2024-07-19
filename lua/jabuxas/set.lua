@@ -34,7 +34,7 @@ autocmd({ "WinLeave" }, { pattern = "*", callback = function() vim.opt.colorcolu
 autocmd({ "WinEnter" }, { pattern = "*", callback = function() vim.opt.colorcolumn = "80" end, })
 
 -- disable bar any%
-vim.opt.laststatus = 0
+-- vim.opt.laststatus = 0
 
 autocmd("Filetype", {
     pattern = "norg",
