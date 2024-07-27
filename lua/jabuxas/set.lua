@@ -36,17 +36,21 @@ autocmd({ "WinEnter" }, { pattern = "*", callback = function() vim.opt.colorcolu
 -- disable bar any%
 -- vim.opt.laststatus = 0
 
-autocmd("Filetype", {
-    pattern = "norg",
-    callback = function()
-        vim.opt.wrap = true
-    end
-})
 
 autocmd("Filetype", {
     pattern = "*",
     callback = function()
         vim.o.formatoptions = "jql"
+    end
+})
+
+autocmd("Filetype", {
+    pattern = "markdown",
+    callback = function()
+        vim.opt.wrap = true
+        vim.o.formatoptions = "l"
+        vim.o.breakindent = true
+        vim.o.lbr = true
     end
 })
 

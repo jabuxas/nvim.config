@@ -35,8 +35,6 @@ keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "ch
 keymap.set("n", "<leader>cm", "<cmd>make<CR>", { desc = "run make command" })
 keymap.set("n", "<leader>cc", "<cmd>!gcc -o %< % && %< <CR>", { desc = "compile current file and execute it" })
 
-keymap.set("t", "<leader><Esc>", [[<C-\><C-n>]], { desc = "exit insert mode on builtin terminal" })
-
 keymap.set("n", "<leader>Sv", "<C-w>v", { desc = "create split vertically" })
 keymap.set("n", "<leader>Sh", "<C-w>s", { desc = "create split horizontally" })
 keymap.set("n", "<leader>Se", "<C-w>=", { desc = "even out buffers" })
