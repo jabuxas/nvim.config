@@ -364,7 +364,6 @@ local servers = {
     pyright = {},
     vtsls = {},
 
-    nil_ls = {},
 
     texlab = {},
 
