@@ -366,6 +366,8 @@ local servers = {
 
     nil_ls = {},
 
+    texlab = {},
+
     jdtls = {
         java = {
             configuration = {
