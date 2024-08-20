@@ -45,7 +45,7 @@ autocmd("Filetype", {
 })
 
 autocmd("Filetype", {
-    pattern = "markdown",
+    pattern = { "markdown", "tex" },
     callback = function()
         vim.opt.wrap = true
         vim.o.formatoptions = "l"
