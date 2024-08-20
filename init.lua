@@ -232,7 +232,7 @@ require('nvim-treesitter.configs').setup {
     ensure_installed = { 'c', 'go', 'lua', 'python', 'tsx', 'typescript', 'markdown', 'bash', 'html', 'css' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = false,
+    auto_install = true,
 
     highlight = { enable = true },
     -- indent = { enable = true },
@@ -348,8 +348,6 @@ local on_attach = function(_, bufnr)
     vim.diagnostic.config({ float = { border = "single" } })
 end
 local servers = {
-    clangd = {},
-    -- hls = {},
     gopls = {
         gopls = {
             usePlaceholders = true,
