@@ -117,20 +117,16 @@ elseif fileContent == "solarized" then
     'maxmx03/solarized.nvim',
     lazy = false,
     priority = 1000,
-    config = function()
-      vim.o.background = 'dark'
+    ---@type solarized.config
+    opts = {
+      palette = 'solarized',
+      styles = {
+        comments = { italic = true, bold = false }
+      },
+    },
+    config = function(_, opts)
       vim.o.termguicolors = true
-
-      require('solarized').setup({
-        enables = {
-          bufferline = true,
-          cmp = true
-        },
-        pallete = "solarized",
-        theme = "neo",
-        transparent = true,
-      })
-
+      require('solarized').setup(opts)
       vim.cmd.colorscheme 'solarized'
     end,
   }

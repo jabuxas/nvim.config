@@ -31,6 +31,7 @@ require('lazy').setup({
             -- Automatically install LSPs to stdpath for neovim
             { 'williamboman/mason.nvim', config = true },
             'williamboman/mason-lspconfig.nvim',
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
 
             {
                 'j-hui/fidget.nvim',
@@ -46,7 +47,18 @@ require('lazy').setup({
                 },
             },
 
-            'folke/neodev.nvim',
+            {
+                -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+                -- used for completion, annotations and signatures of Neovim apis
+                'folke/lazydev.nvim',
+                ft = 'lua',
+                opts = {
+                    library = {
+                        -- Load luvit types when the `vim.uv` word is found
+                        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+                    },
+                },
+            },
         },
     },
 
@@ -136,9 +148,9 @@ vim.wo.number = true
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
--- Sync clipboard between OS and Neovim.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+vim.schedule(function()
+    vim.opt.clipboard = 'unnamedplus'
+end)
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -386,31 +398,36 @@ local servers = {
     },
 }
 
--- Setup neovim lua configuration
-require('neodev').setup()
-
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
+require('mason').setup()
 
-mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(servers),
+local ensure_installed = vim.tbl_keys(servers or {})
+vim.list_extend(ensure_installed, {
+    'stylua',
+    'black',
+    'prettierd',
+    'gofumpt',
+    'goimports-reviser',
+    'golines',
+    'golangci-lint',
+})
+require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+require('mason-lspconfig').setup {
+    handlers = {
+        function(server_name)
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
+        end,
+    },
 }
 
-mason_lspconfig.setup_handlers {
-    function(server_name)
-        require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-            filetypes = (servers[server_name] or {}).filetypes,
-        }
-    end
-}
+
 
 local lspconfig = require("lspconfig")
 
@@ -437,6 +454,18 @@ lspconfig.volar.setup {
             hybridMode = true,
         },
     },
+}
+
+lspconfig.rust_analyzer.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+        ['rust_analyzer'] = {
+            cargo = {
+                allFeatures = true,
+            }
+        }
+    }
 }
 -- this is for my personal config, i cant bother seeing every TJ's default and changing it to my own
 require("jabuxas")
