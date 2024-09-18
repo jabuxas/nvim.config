@@ -339,14 +339,9 @@ local servers = {
             }
         },
     },
-    marksman = {},
     html = { provideFormatter = false },
     cssls = {},
     pyright = {},
-    vtsls = {},
-
-
-    texlab = {},
 
     jdtls = {
         java = {
@@ -388,6 +383,7 @@ vim.list_extend(ensure_installed, {
 })
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+
 require('mason-lspconfig').setup {
     handlers = {
         function(server_name)
@@ -398,45 +394,50 @@ require('mason-lspconfig').setup {
     },
 }
 
-
-
-local lspconfig = require("lspconfig")
-
 local mason_registry = require('mason-registry')
 local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
     '/node_modules/@vue/language-server'
 
-lspconfig.tsserver.setup {
-    init_options = {
-        plugins = {
-            {
-                name = '@vue/typescript-plugin',
-                location = vue_language_server_path,
-                languages = { 'vue' },
+local manual_servers = {
+    texlab = {},
+
+    tsserver = {
+        init_options = {
+            plugins = {
+                {
+                    name = '@vue/typescript-plugin',
+                    location = vue_language_server_path,
+                    languages = { 'vue' },
+                },
             },
         },
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     },
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-}
 
-lspconfig.volar.setup {
-    init_options = {
-        vue = {
-            hybridMode = true,
+    volar = {
+        init_options = {
+            vue = {
+                hybridMode = true,
+            },
         },
-    },
-}
 
-lspconfig.rust_analyzer.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = {
-        ['rust_analyzer'] = {
-            cargo = {
-                allFeatures = true,
+    },
+
+    rust_analyzer = {
+        settings = {
+            ['rust_analyzer'] = {
+                cargo = {
+                    allFeatures = true,
+                }
             }
         }
     }
 }
+
+for server_name, config in pairs(manual_servers) do
+    config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
+    require('lspconfig')[server_name].setup(config)
+end
+
 -- this is for my personal config, i cant bother seeing every TJ's default and changing it to my own
 require("jabuxas")

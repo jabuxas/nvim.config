@@ -91,3 +91,7 @@ nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Fo
 nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, '[W]orkspace [L]ist Folders')
+
+vim.keymap.set('c', ';;', function()
+    return vim.fn.getcmdtype() == ':' and vim.fn.expand('%:h') .. '/' or ';;'
+end, { expr = true })
