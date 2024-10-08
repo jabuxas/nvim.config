@@ -1,4 +1,6 @@
 return {
-  "barrett-ruth/live-server.nvim",
-  config = true,
+  "ngtuonghy/live-server-nvim",
+  event = "VeryLazy",
+  build = ":LiveServerInstall",
+  opts = {}
 }
