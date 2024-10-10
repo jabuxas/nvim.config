@@ -329,8 +329,25 @@ local on_attach = function(_, bufnr)
     )
     vim.diagnostic.config({ float = { border = "single" } })
 end
+local mason_registry = require('mason-registry')
+local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+    '/node_modules/@vue/language-server'
 local servers = {
     ocamllsp = {},
+
+    ts_ls = {
+        init_options = {
+            plugins = {
+                {
+                    name = '@vue/typescript-plugin',
+                    location = vue_language_server_path,
+                    languages = { 'vue' },
+                },
+            },
+        },
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    },
+
     gopls = {
         gopls = {
             usePlaceholders = true,
@@ -355,6 +372,14 @@ local servers = {
         }
     },
 
+    volar = {
+        init_options = {
+            vue = {
+                hybridMode = true,
+            },
+        },
+
+    },
 
     lua_ls = {
         Lua = {
@@ -394,34 +419,9 @@ require('mason-lspconfig').setup {
     },
 }
 
-local mason_registry = require('mason-registry')
-local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
-    '/node_modules/@vue/language-server'
 
 local manual_servers = {
     texlab = {},
-
-    tsserver = {
-        init_options = {
-            plugins = {
-                {
-                    name = '@vue/typescript-plugin',
-                    location = vue_language_server_path,
-                    languages = { 'vue' },
-                },
-            },
-        },
-        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    },
-
-    volar = {
-        init_options = {
-            vue = {
-                hybridMode = true,
-            },
-        },
-
-    },
 
     rust_analyzer = {
         settings = {
