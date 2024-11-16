@@ -14,20 +14,16 @@ local fileContent = read_file(string.format("%s/colorscheme", home));
 
 if fileContent == "white" then
   colorscheme = {
-    'maxmx03/solarized.nvim',
+    'marko-cerovac/material.nvim',
     lazy = false,
     priority = 1000,
     config = function()
       vim.o.background = 'light'
       vim.opt.termguicolors = true
-      require('solarized').setup({
-        theme = 'neo',
-        styles = {
-          functions = { bold = true, italic = false }
-        },
-      })
-      vim.cmd.colorscheme 'solarized'
-      vim.cmd [[highlight ColorColumn ctermbg=235 guibg=#435156]]
+      vim.g.material_style = 'lighter'
+      require('material').setup({})
+      vim.cmd.colorscheme 'material'
+      -- vim.cmd [[highlight ColorColumn ctermbg=235 guibg=#435156]]
     end,
   }
 elseif fileContent == "red" then

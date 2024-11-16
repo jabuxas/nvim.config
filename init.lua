@@ -379,6 +379,17 @@ local servers = {
             },
         },
 
+    ts_ls = {
+        init_options = {
+            plugins = {
+                {
+                    name = '@vue/typescript-plugin',
+                    location = vue_language_server_path,
+                    languages = { 'vue' },
+                },
+            },
+        },
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     },
 
     lua_ls = {
