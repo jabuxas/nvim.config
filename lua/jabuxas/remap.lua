@@ -60,6 +60,8 @@ keymap.set("n", "<leader>tA", "<cmd>GoTestAdd<CR>", { desc = "Add Go Test for cu
 keymap.set("n", "<leader>gr", "<cmd>lua vim.lsp.buf.rename()<CR>",
     { desc = "Renames all references to the symbol under the cursor" })
 
+keymap.set("n", "<leader>ts", "<cmd>lua vim.lsp.buf.hover()<CR>", {desc = "show current token signature"})
+
 local nmap = function(keys, func, desc)
     if desc then
         desc = 'LSP: ' .. desc
