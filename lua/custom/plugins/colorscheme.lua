@@ -89,6 +89,21 @@ elseif fileContent == "monochrome" then
       }
     },
   }
+elseif fileContent == "rose" then
+  colorscheme = {
+    'jesseleite/nvim-noirbuddy',
+    dependencies = {
+      { 'tjdevries/colorbuddy.nvim' }
+    },
+    lazy = false,
+    priority = 1000,
+    opts = {
+      colors = {
+        primary = "#e57474",
+        secondary = "#c96666"
+      }
+    },
+  }
 elseif fileContent == "forest" then
   colorscheme = {
     "neanias/everforest-nvim",
