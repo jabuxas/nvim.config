@@ -362,7 +362,7 @@ local servers = {
             }
         },
     },
-    html = { provideFormatter = false },
+    html = { provideFormatter = false, filetypes = {"html", "htmldjango"} },
     cssls = {},
     pyright = {
         settings = {
@@ -395,6 +395,13 @@ local servers = {
                 hybridMode = true,
             },
         },
+
+    phpactor = {
+        -- init_options = {
+        --     language_server_phpstan.enabled = false,
+        --     language_server_psalm.enabled = false,
+        -- },
+    },
 
     ts_ls = {
         init_options = {
@@ -433,6 +440,8 @@ vim.list_extend(ensure_installed, {
     'goimports-reviser',
     'golines',
     'golangci-lint',
+    'ruff',
+    'phpcbf',
 })
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
