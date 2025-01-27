@@ -362,7 +362,7 @@ local servers = {
             }
         },
     },
-    html = { provideFormatter = false, filetypes = {"html", "htmldjango"} },
+    html = { provideFormatter = false, filetypes = {"html", "htmldjango", "php"} },
     cssls = {},
     pyright = {
         settings = {
